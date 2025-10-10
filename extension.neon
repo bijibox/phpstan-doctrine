@@ -156,15 +156,22 @@ services:
 			descriptorRegistry: @doctrineTypeDescriptorRegistry
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
-	-
-		class: PHPStan\Type\Doctrine\Query\QueryResultDynamicReturnTypeExtension
-		tags:
-			- phpstan.broker.dynamicMethodReturnTypeExtension
-	-
-		class: PHPStan\Type\Doctrine\QueryBuilder\Expr\ExpressionBuilderDynamicReturnTypeExtension
-		arguments:
-			argumentsProcessor: @doctrineQueryBuilderArgumentsProcessor
-		tags:
+        -
+                class: PHPStan\Type\Doctrine\Query\QueryResultDynamicReturnTypeExtension
+                tags:
+                        - phpstan.broker.dynamicMethodReturnTypeExtension
+        -
+                class: PHPStan\Type\Doctrine\UnitOfWorkGetEntityChangeSetDynamicReturnTypeExtension
+                arguments:
+                        objectMetadataResolver: @PHPStan\Type\Doctrine\ObjectMetadataResolver
+                        descriptorRegistry: @doctrineTypeDescriptorRegistry
+                tags:
+                        - phpstan.broker.dynamicMethodReturnTypeExtension
+        -
+                class: PHPStan\Type\Doctrine\QueryBuilder\Expr\ExpressionBuilderDynamicReturnTypeExtension
+                arguments:
+                        argumentsProcessor: @doctrineQueryBuilderArgumentsProcessor
+                tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 	-
 		class: PHPStan\Type\Doctrine\QueryBuilder\Expr\BaseExpressionDynamicReturnTypeExtension
